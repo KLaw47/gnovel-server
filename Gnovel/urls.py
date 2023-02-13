@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from gnovelapi.views import check_user, register_user, UserComicView, UserView, ReviewView, ComicView
+
+router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'comics', ComicView, 'comic')
+router.register(r'reviews', ReviewView, 'review')
+router.register(r'user_comics', UserComicView, 'user_comic')
+router.register(r'users', UserView, 'user')
 
 urlpatterns = [
+    path('register', register_user),
+    path('checkuser', check_user),
     path('admin/', admin.site.urls),
-    path('', include ('Gnovel.urls'))
+    path('', include(router.urls)),
 ]

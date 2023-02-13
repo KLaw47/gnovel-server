@@ -2,7 +2,7 @@ import requests
 import datetime
 import hashlib
 from django.core.management.base import BaseCommand
-from ....gnovelapi.models import Comic
+from gnovelapi.models import Comic
 
 timestamp = datetime.datetime.now().strftime('%Y-%m-%d%H:%M:%S')
 pub_key = '3f68a813b04d0f4f73487c58ced1cc60'
@@ -15,17 +15,24 @@ def hash_params():
 
     return hashed_params
 
-params = {'ts': timestamp, 'apikey': pub_key, 'hash': hash_params()};
-res = requests.get('http://gateway.marvel.com/v1/public/comics', params=params)
+params = {'ts': timestamp, 'apikey': pub_key, 'hash': hash_params()}
+res = requests.get('http://gateway.marvel.com/v1/public/comics', params=params, headers={'Content-Type':
+    'application/json'})
 
 results = res.json()
 
 
-# def get_comics():
-#     url = 'http://gateway.marvel.com/v1/public/comics?'
-#     r = requests.get(url, headers={'Content-Type':
-#         'application/json'})
-#     comics = r.json()
-#     return comics
-
 def seed_comic():
+    print(results)
+    for c in results["data"]['results']:
+        comic = Comic(
+            title=c["title"],
+            description=c["description"],
+            thumbnail=c["thumbnail"]["path"],
+        )
+        comic.save()
+
+class Command(BaseCommand):
+    def handle(self, *args, **options):
+        seed_comic()
+        print("complete")

@@ -1,0 +1,26 @@
+[
+    {
+        "model": "gnovelapi.User_Comic",
+        "PK": 1,
+        "fields": {
+            "user": 1,
+            "comic": 4
+        }
+    },
+    {
+        "model": "gnovelapi.User_Comic",
+        "PK": 2,
+        "fields": {
+            "user": 1,
+            "comic": 5
+        }
+    },
+    {
+        "model": "gnovelapi.User_Comic",
+        "PK": 3,
+        "fields": {
+            "user": 1,
+            "comic": 6
+        }
+    }
+]
