@@ -1,0 +1,32 @@
+[
+    {
+        "model": "gnovelapi.Review",
+        "PK": 1,
+        "fields": {
+            "rating": 3,
+            "text": "Sample review text block",
+            "user_id": 1,
+            "comic_id": 4
+        }
+    },
+    {
+        "model": "gnovelapi.Review",
+        "PK": 2,
+        "fields": {
+            "rating": 3,
+            "text": "Sample review text block",
+            "user_id": 1,
+            "comic_id": 5
+        }
+    },
+    {
+        "model": "gnovelapi.Review",
+        "PK": 3,
+        "fields": {
+            "rating": 3,
+            "text": "Sample review text block",
+            "user_id": 1,
+            "comic_id": 6
+        }
+    }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "model": "gnovelapi.User",
+        "PK": 1,
+        "fields": {
+            "first_name": "Keaton",
+            "last_name": "Law",
+            "image_url": "https://picsum.photos/200/300",
+            "uid": "1"
+        }
+    }
+]
