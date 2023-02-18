@@ -25,10 +25,11 @@ results = res.json()
 def seed_comic():
     print(results)
     for c in results["data"]['results']:
+        thumb_path = c["thumbnail"]["path"]
         comic = Comic(
             title=c["title"],
             description=c["description"],
-            thumbnail=c["thumbnail"]["path"],
+            thumbnail=thumb_path + "/portrait_xlarge.jpg",
         )
         comic.save()
 
