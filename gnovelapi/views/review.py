@@ -27,8 +27,8 @@ class ReviewView(ViewSet):
 
     def create(self, request):
 
-        comic = Comic.objects.get(pk=request.data['comic'])
-        user = User.objects.get(pk=request.data['user'])
+        comic = Comic.objects.get(pk=request.data['comic_id'])
+        user = User.objects.get(pk=request.data['user_id'])
 
         review = Review.objects.create(
             rating=request.data["rating"],
