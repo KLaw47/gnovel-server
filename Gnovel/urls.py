@@ -25,6 +25,13 @@ router.register(r'user_comics', UserComicView, 'user_comic')
 router.register(r'users', UserView, 'user')
 
 urlpatterns = [
+    path('user_comics/', UserComicView.as_view({
+        'get': 'list',
+        'post': 'create'
+    }), name='user_comics'),
+    path('user_comics/<int:user>/<int:comic>/', UserComicView.as_view({
+        'delete': 'destroy'
+    }), name='user_comic'),
     path('register', register_user),
     path('checkuser', check_user),
     path('admin/', admin.site.urls),

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'gnovelapi',
-    'Gnovel',
+    # 'Gnovel',
 ]
 
 CORS_ORIGIN_WHITELIST = (
