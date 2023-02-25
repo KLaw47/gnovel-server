@@ -28,6 +28,8 @@ class UserComicView(ViewSet):
         return Response(serializer.data)
 
     def destroy(self, request, pk):
+        # user = request.query_params.get('user', None)
+        # comic = request.query_params.get('comic', None)
         user_comic = User_Comic.objects.get(pk=pk)
         user_comic.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)

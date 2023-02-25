@@ -41,8 +41,8 @@ class ReviewView(ViewSet):
 
     def update(self, request, pk):
 
-        user = User.objects.get(pk=request.data["user"])
-        comic = Comic.objects.get(pk=request.data["comic"])
+        comic = Comic.objects.get(pk=request.data["comic_id"])
+        user = User.objects.get(pk=request.data["user_id"])
 
         review = Review.objects.get(pk=pk)
         review.rating=request.data["rating"]
