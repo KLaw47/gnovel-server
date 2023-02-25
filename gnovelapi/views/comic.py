@@ -31,7 +31,7 @@ class ComicSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comic
-        fields = ('id', 'title', 'description', 'thumbnail', 'image')
+        fields = ('id', 'title', 'description', 'thumbnail')
         depth = 1
 
 class ReviewSerializer(serializers.ModelSerializer):

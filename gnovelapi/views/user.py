@@ -17,17 +17,7 @@ class UserView(ViewSet):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
-
-# class ComicSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Comic
-#         fields = ('id', 'title', 'description', 'thumbnail', 'image', 'joined_comics')
-#         depth = 1
-
-
 class UserComicSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User_Comic
         fields = ('id',)
@@ -37,7 +27,7 @@ class ComicSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comic
-        fields = ('id', 'title', 'description', 'thumbnail', 'image', 'joined_comics')
+        fields = ('id', 'title', 'description', 'thumbnail', 'joined_comics')
 
     def get_joined_comics(self, obj):
         user = self.context.get('user')
