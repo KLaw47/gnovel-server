@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from gnovelapi.models import User, Comic, User_Comic
+from gnovelapi.models import User, Comic, User_Comic, Review
 
 class UserView(ViewSet):
 
@@ -24,16 +24,25 @@ class UserComicSerializer(serializers.ModelSerializer):
 class ComicSerializer(serializers.ModelSerializer):
 
     joined_comics = serializers.SerializerMethodField()
+    average_rating = serializers.SerializerMethodField()
 
     class Meta:
         model = Comic
-        fields = ('id', 'title', 'description', 'thumbnail', 'joined_comics')
+        fields = ('id', 'title', 'description', 'thumbnail', 'joined_comics', 'average_rating')
 
     def get_joined_comics(self, obj):
         user = self.context.get('user')
         user_comics = obj.joined_comics.filter(user=user)
         serializer = UserComicSerializer(user_comics, many=True)
         return serializer.data
+
+    def get_average_rating(self, comic):
+        reviews = Review.objects.filter(comic=comic)
+        if reviews:
+            ratings = [review.rating for review in reviews]
+            return sum(ratings) / len(ratings)
+        else:
+            return 0
 
 class UserSerializer(serializers.ModelSerializer):
     comics=ComicSerializer(many=True)
