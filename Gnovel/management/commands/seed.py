@@ -17,7 +17,7 @@ def hash_params():
 
 params = {'ts': timestamp, 'apikey': pub_key, 'hash': hash_params()}
 res = requests.get('http://gateway.marvel.com/v1/public/comics', params=params, headers={'Content-Type':
-    'application/json'})
+    'application/json'}, timeout=15)
 
 results = res.json()
 
