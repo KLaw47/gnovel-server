@@ -3,3 +3,4 @@ from .comic import ComicView
 from .review import ReviewView, ReviewSerializer
 from .user import UserView
 from .user_comic import UserComicView
+from .image import ImageView
